@@ -53,7 +53,7 @@ function checkLetter (buttonPress) {
     };
 };
 console.log(checkLetter());
-alert('poo');
+
 // ---------------------------- //
 // Hide overlay on button click //
 const startButton = document.querySelector('.btn__reset');
