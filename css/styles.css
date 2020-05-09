@@ -12,7 +12,7 @@
   --color-keys: #37474F;
   --color-keys-light: #E5E5E5;
   --font-size-large: 60px;
-  --font-size-medium: 20px;
+  --font-size-medium: 24px;
   --transition: all .2s ease-in-out;
 }
 
@@ -20,6 +20,7 @@
 
 * {
   box-sizing: border-box;
+  
 }
 
 body {
@@ -79,22 +80,27 @@ button {
 
 .letter {
   font-size: var(--font-size-medium);
-  height: 65px;
-  width: 65px;
-  padding: 20px 1px 0 1px;
-  margin-right: 2px;
+  height: 55px;
+  width: 55px;
+  padding: 10px 1px 0 1px;
+  margin-right: 4px;
   color: transparent;
   background: var(--color-neutral-light);
   border-radius: 5px;
+  transition: background-color, 1s;
 }
 
 .space {
-  width: 15px;
+  width: 18px;
 }
 
 .show {
+  font-family: 'Balsamiq Sans', cursive;
+  font-size: 36px;
   color: #000;
   background-color: #76CE82;
+  transform: rotate(360deg);
+  
 }
 
 /* Keyboard */
@@ -132,6 +138,7 @@ button {
   left: 0;
   right: 0;
   border-radius: 5px;
+  z-index: 1;
 }
 
 .title {
