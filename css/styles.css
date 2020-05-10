@@ -24,6 +24,7 @@
 }
 
 body {
+  background-color: rgb(238, 238, 238);
   justify-content: space-evenly;
   flex-direction: column;
   display: flex;
@@ -47,9 +48,9 @@ button {
   margin: 6px;
   border: 1px solid transparent;
   padding: .5rem 1rem;
-  color: var(--color-keys);
+  color: white;
   font-size: var(--font-size-medium);
-  background-color: var(--color-keys-light);
+  background-color: var(--color-start);
   border-radius: 5px;
   -webkit-transition: var(--transition);
   -o-transition: var(--transition);
@@ -79,13 +80,14 @@ button {
 /* Phrase */
 
 .letter {
-  font-size: var(--font-size-medium);
-  height: 55px;
-  width: 55px;
-  padding: 10px 1px 0 1px;
-  margin-right: 4px;
+  font-family: 'Fira Sans', sans-serif;
+  font-size: 28px;
+  height: 58px;
+  width: 58px;
+  padding: 8px 1px 0 1px;
+  margin-right: 6px;
   color: transparent;
-  background: var(--color-neutral-light);
+  background: var(--color-neutral);
   border-radius: 5px;
   transition: background-color, 1s;
 }
@@ -94,16 +96,17 @@ button {
   width: 18px;
 }
 
-.show {
-  font-family: 'Balsamiq Sans', cursive;
-  font-size: 36px;
+.show { 
   color: #000;
-  background-color: #76CE82;
+  background-color: rgb(81, 230, 76);
   transform: rotate(360deg);
   
 }
 
 /* Keyboard */
+#qwerty button {
+  transition: background-color 0.8s;
+}
 
 .keyrow {
   display: flex;
@@ -116,8 +119,14 @@ button {
   font-size: var(--font-size-medium);
   color: #FFFFFF;
 }
-
-.btn__reset {
+.wrong {
+  background-color: var(--color-lose);
+}
+.btn_reset {
+  display: none;
+}
+.btn_start, .btn_reset {
+  color: var(--color-keys);
   padding: 8px;
   margin: 50px auto;
   background: #FFFFFF;
@@ -170,7 +179,7 @@ button {
 }
 /* ------- Added Styles ----------- */
 
-  .btn__reset:hover{
+  .btn_start:hover, .btn_reset:hover{
     color: rgb(51, 214, 51);
     transform: scale(1.15);
   

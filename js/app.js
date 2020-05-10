@@ -1,25 +1,33 @@
 // ------ TITLES ARRAY -------- //
 const movieTitles = [
-    ['Jurassic Park'],
-    ['Back To The Future'],
-    ['Saving Private Ryan'],
-    ['Guardians Of The Galaxy'],
-    ['Forrest Gump'],
-    ['Slumdog Millionaire'],
-    ['The Breakfast Club'],
-    ['Gangs Of New York'],
+    ['Jurassic park'],
+    ['Back to the future'],
+    ['Saving private ryan'],
+    ['Catch me if you can'],
+    ['Forrest gump'],
+    ['Slumdog millionaire'],
+    ['The breakfast club'],
+    ['Gangs of New York'],
     ['Casablanca'],
-    ['Gladiator']
+    ['Gladiator'],
+    ['Ghostbusters'],
+    ['The italian job'],
+    ['Kill bill'],
+    ['The blues brothers'],
+    ['Blade runner']
 ];
 // ---------------------------- //
 // ------- VARIABLES ---------- //
 const keyboard = document.querySelector('#qwerty');
-const movieTitle = document.querySelector('#movieTitle');
+let movieTitle = document.querySelector('#movieTitle ul');
 let missed = -1;
-const lives = document.querySelectorAll('.tries');
-const startButton = document.querySelector('.btn__reset');
+let lives = document.querySelectorAll('.tries');
+const startButton = document.querySelector('.btn_start');
+const resetButton = document.querySelector('.btn_reset');
 const overlay = document.querySelector('#overlay');
 const heading =  document.querySelector('h2');
+let currentMovie = '';
+
 // ---------------------------- //
 // ------- FUNCTIONS ---------- //
 function getMovieAsArray (movie) {
@@ -42,11 +50,10 @@ function addMovieToDisplay (movie) {
 };
 
 function createRandomTitle () {
-    return Math.round(Math.random() * 10);
+    return Math.round(Math.random() * 14);
 };
 
 
-addMovieToDisplay(getMovieAsArray(movieTitles[createRandomTitle()]));
 
 function checkLetter (buttonPress) {
     const letter  = document.querySelectorAll('.letter');
@@ -65,40 +72,75 @@ keyboard.addEventListener('click', (e) => {
     e.target.classList.add('chosen');
     e.target.setAttribute('disabled', '');
         if (checkLetter(e.target) === null) {
-            alert('wrong');
+            e.target.classList.add('wrong');
             missed += 1;
-            lives[missed].style.display = 'none';
-        }   
-        
+            lives[missed].style.opacity = 0.2;
+        }           
     }
     
-    setTimeout(function(){ checkWin(); }, 4000);
+    setTimeout(function(){ checkWin(); }, 4500);
 });
+
+function resultPage (result) {
+    overlay.classList.add(result);
+    overlay.style.display = 'flex';
+    
+}
 
 function checkWin () {
     let titleLetters = document.querySelectorAll('.letter');
     let correctGuesses = document.querySelectorAll('.show');
     
+    
     if ( titleLetters.length === correctGuesses.length) {
-        overlay.classList.add('win');
-        overlay.style.display = 'flex';
-        heading.textContent = 'Well Done You Won!';
+        resultPage ('win');
+        hideShowButtons ();
+        heading.textContent = `Well Bloody Done! it was ${currentMovie}`;
 
-    } else if ( missed === 4 ) {    
-        overlay.classList.add('lose');
-        overlay.style.display = 'flex';
-        heading.textContent = 'You Silly Bitch!';
+    } else if ( missed >= 4 ) {    
+        // console.log(currentMovie);
+        resultPage ('lose');
+        hideShowButtons ();
+        heading.textContent = `You Silly Billy! it was ${currentMovie}`;
+        
     }
     
 };
-
+function hideShowButtons () {
+    startButton.style.display = 'none';
+    resetButton.style.display = 'inline-block';
+}
 
 
 // ---------------------------- //
 // Hide overlay on button click //
-
-
-startButton.addEventListener('click', () => {
+resetButton.addEventListener('click', () => {
+    
+    let letters  = document.querySelectorAll('#movieTitle ul li');
+    let keyboardButtons  = document.querySelectorAll('.keyrow button');
+    for ( let j = 0; j < letters.length; j += 1 ) {       
+        letters[j].remove();
+    
+    }
+    for ( let j = 0; j < lives.length; j += 1 ) {
+        lives[j].style.opacity = 1;
+    }
+    for ( let j = 0; j < keyboardButtons.length; j += 1 ) {
+        keyboardButtons[j].className = "";
+        keyboardButtons[j].removeAttribute('disabled');
+    }
+  
+    overlay.className = '';
+    missed = -1;
     overlay.style.display = 'none';
+    currentMovie = movieTitles[createRandomTitle()];
+    addMovieToDisplay(getMovieAsArray(currentMovie));
+})
+
+
+startButton.addEventListener('click', () => {  
+    currentMovie = movieTitles[createRandomTitle()];
+    overlay.style.display = 'none';   
+    addMovieToDisplay(getMovieAsArray(currentMovie));
 });
 // ---------------------------- //
