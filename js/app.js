@@ -20,13 +20,13 @@ const movieTitles = [
 // ---------------------------- //
 // ------- VARIABLES ---------- //
 const keyboard = document.querySelector('#qwerty');
-let movieTitle = document.querySelector('#movieTitle ul');
-let lives = document.querySelectorAll('.tries');
 const startButton = document.querySelector('.btn_start');
 const resetButton = document.querySelector('.btn_reset');
 const overlay = document.querySelector('#overlay');
 const heading =  document.querySelector('h2');
 const message =  document.querySelector('p');
+let movieTitle = document.querySelector('#movieTitle ul');
+let lives = document.querySelectorAll('.tries');
 let currentMovie = '';
 let missed = -1;
 
@@ -34,14 +34,12 @@ let missed = -1;
 // --------- FUNCTIONS ---------- //
 
 /* -- Turns the selected movie into an array--  */
-const getMovieAsArray = movie => {
-    const film = String(movie);
-    return film.split('');
-};
+const getMovieAsArray = movie => String(movie).split('');
+
 // ------------------------------ //
 
 /* -- the movie array is then passed here, each letter is made into an
-<li> element then appended to the page --s*/
+<li> element then appended to the page --*/
 const addMovieToDisplay = movie => {
     for (let j = 0; j < movie.length; j += 1) {
     const li = document.createElement('li');
