@@ -12,7 +12,7 @@
   --color-keys: #37474F;
   --color-keys-light: #E5E5E5;
   --font-size-large: 60px;
-  --font-size-medium: 24px;
+  --font-size-medium: 26px;
   --transition: all .2s ease-in-out;
 }
 
@@ -44,6 +44,10 @@ h2 {
   margin: 0;
 }
 
+p {
+  font-size: var(--font-size-medium);
+}
+
 button {
   margin: 6px;
   border: 1px solid transparent;
@@ -55,6 +59,11 @@ button {
   -webkit-transition: var(--transition);
   -o-transition: var(--transition);
   transition: var(--transition);
+}
+
+.btn_start:hover, .btn_reset:hover{
+  color: rgb(51, 214, 51);
+  transform: scale(1.15);
 }
 
 .main-container {
@@ -177,10 +186,6 @@ button {
 .lose a {
   color: var(--color-lose);
 }
-/* ------- Added Styles ----------- */
 
-  .btn_start:hover, .btn_reset:hover{
-    color: rgb(51, 214, 51);
-    transform: scale(1.15);
+
   
-  }
