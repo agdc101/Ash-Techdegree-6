@@ -2,20 +2,7 @@
 const movieTitles = [
     ['Jurassic park'],
     ['Back to the future'],
-    ['Saving private ryan'],
-    ['Catch me if you can'],
-    ['Forrest gump'],
-    ['Slumdog millionaire'],
-    ['The breakfast club'],
-    ['Gangs of New York'],
-    ['Casablanca'],
-    ['Gladiator'],
-    ['Ghostbusters'],
-    ['The italian job'],
-    ['Kill bill'],
-    ['The blues brothers'],
-    ['Blade runner'],
-    ['Mrs doubtfire'],
+    ['Saving private ryan']
 ];
 // ---------------------------- //
 // ------- VARIABLES ---------- //
@@ -29,7 +16,8 @@ let movieTitle = document.querySelector('#movieTitle ul');
 let lives = document.querySelectorAll('.tries');
 let currentMovie = '';
 let missed = -1;
-
+let number;
+let prevNumber;
 // ------------------------------ //
 // --------- FUNCTIONS ---------- //
 
@@ -56,8 +44,14 @@ const addMovieToDisplay = movie => {
 // -------------------------------- //
 
 /* -- Math function creates number between 0 and 15 --*/
-const createRandomTitle = () =>  Math.round(Math.random() * 15);
-
+const createRandomTitle = () =>  {
+    // do while loop prevents the same movie title twice in a row!
+    do {
+        number = Math.round(Math.random() * 2);
+    } while (number === prevNumber)
+    prevNumber = number;
+    return number;
+}
 /*  --This function compares the text content of the button 'clicked', to each
 letter in the movie title --*/
 const checkLetter = (buttonPress) => {
